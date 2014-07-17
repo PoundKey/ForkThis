@@ -1,0 +1,55 @@
+<blockquote><em>
+ForkThis! A platform allows you to rate, share and discuss your experience of restaurants around UBC Vancouver at real-time.</em><br>
+<small class="team" style="float:right">Designed by: Iterative Simplicity</small>
+</blockquote>
+<div class="input-group">
+  <ui-select ng-model="res.selected" theme="bootstrap">
+  <match id="searchBox" placeholder="Select or search a restaurant near UBC...">{{$select.selected.name}}</match>
+  <choices repeat="loc in locations | filter: $select.search">
+    <b><span ng-bind-html="loc.name | highlight: $select.search"></span></b> &nbsp
+    <i class="fa fa-home"></i>&nbsp
+    <small ng-bind-html="loc.vicinity | highlight: $select.search"></small>
+  </choices>
+</ui-select>
+<span class="input-group-addon" ng-click="res.selected = undefined">
+  <i class="fa fa-times-circle-o"></i></span>
+</div>
+<br>
+
+<!-- <div class="filtration">
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-spinner fa-spin fa-lg"></i></span>
+    <input type="text" id="searchBox" class="form-control" ng-model="searchText" placeholder="Search for restaurant...">
+  </div>
+</div><br> -->
+
+<div class="tabular" ng-show="res.selected">
+  <table class="table table-bordered table-hover table-striped table-condensed">
+    <thead class="text-center">
+      <tr>
+        <th class="col-md-4"><i class="fa fa-empire"></i> Name</th>
+        <th class="col-md-6"><i class="fa fa-home"></i> Address</th>
+        <th class="col-md-2"><i class="fa fa-star-o"></i> Rating</th>
+
+      </tr>
+    </thead>
+<!--     <tbody>
+      <tr class="repeat-item" ng-repeat="loc in locations | filter:res.selected">
+        <td class="text-info text-center"><a ng-href="/res/{{resIndex}}">{{loc.name}}</a></td>
+        <td class="text-info text-center">{{loc.vicinity}}</td>
+        <td class="text-info text-center">{{loc.rating}}</td>
+      </tr>
+    </tbody> -->
+
+    <tbody id="resItem">
+      <tr>
+        <td class="text-info text-center"><a ng-href="#/res/{{resIndex}}">{{res.selected.name}}</a></td>
+        <td class="text-info text-center">{{res.selected.vicinity}}</td>
+        <td class="text-info text-center">{{res.selected.rating}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+  <span ng-if="username" class="button-wrap"><a href="#" ng-click="refreshData()" class="button button-pill ">Update</a></span> &nbsp
+
+</div>

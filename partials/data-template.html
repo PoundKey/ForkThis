@@ -1,0 +1,64 @@
+
+<div class="search-background shadow">
+	<div class="row">
+      <div class="col-lg-6 col-sm-12">
+			<h2><i class="fa fa-globe"></i>  {{currentRes.name}}</h2>
+			<p class="text-info"><i class="fa fa-linkedin-square"></i> {{currentRes.vicinity}}</p>
+			<p><i class="fa fa-star-o"></i> Rating:  <rating ng-model="rate" ng-click="rateRes()" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating> 			<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span> &nbsp
+			<a href="" ng-click="share()" class="button button-rounded button-flat"><i class="fa fa-facebook-square"></i> Share</a></p>
+			<hr>
+			<span ><a class="button button-border-caution button-circle glow">{{overallRate() || "Loading..."}}</a></span> &nbsp &nbsp
+
+
+		</div>
+
+		<div class="col-lg-6 col-sm-12">
+		<br>
+			<iframe
+		  width="320"
+		  height="280"
+		  frameborder="1" style="border:groove"
+		  ng-src="{{locSearch}}">
+			</iframe>
+		</div>
+	<br>
+	<hr>
+	</div>
+
+	<h3 class="text-left">Reviews:</h3>
+	<table class="table table-hover table-bordered table-striped table-condensed">
+		<thead>
+			<tr>
+				<th class="col-md-3"><i class="fa fa-users"></i> Users</th>
+				<th class="col-md-9"><i class="fa fa-comments-o"></i> They Say, I Say</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="com in coredata[ace]">
+				<td class="text-center"><i class="fa fa-user"></i> {{com.user}}</td>
+				<td>&nbsp<i class="fa fa-pencil-square-o"></i> {{com.comment}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4 class="text-left">Write a Review for {{currentRes.name}}:</h4>
+	<form class="form-inline" ng-submit="submitFirebase()" ng-controller="DataCtrl" role="form">
+		<div class="form-group">
+			<input type="text" ng-model="userinput"  class="form-control" id="userinput" size="92%" placeholder="Enter your comment...">
+
+		</div><br><br>
+		<button type="submit" class="button button-pill button-primary pull-right"><i class="fa fa-paper-plane-o"></i> Comment</button>
+	</form>
+	<br><br>
+	<hr>
+		<a href="/" class="button button-border-primary button-pill"><i class="fa fa-chevron-left"></i> Back</a>&nbsp
+		<a ng-click="deleteResCom()" class="button button-border-caution button-pill pull-right"><i class="fa fa-trash-o"></i> Clear Data</a>&nbsp
+
+	<!-- 	<button class="btn btn-danger" ng-click="deleteStorage()"> <i class="fa fa-trash-o"></i> Clear Data</button> &nbsp -->
+
+
+	<br>
+
+
+
+</div>

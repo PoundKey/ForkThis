@@ -1,0 +1,52 @@
+/*global angular */
+/*jshint unused:false */
+'use strict';
+
+/**
+ * The main TodoMVC app module
+ *
+ * @type {angular.Module}
+ */
+var todomvc = angular.module('todomvc', ['firebase', 'ngRoute']);
+
+todomvc.filter('todoFilter', function ($location) {
+	return function (input) {
+		var filtered = {};
+		angular.forEach(input, function (todo, id) {
+			var path = $location.path();
+			if (path === '/active') {
+				if (!todo.completed) {
+					filtered[id] = todo;
+				}
+			} else if (path === '/completed') {
+				if (todo.completed) {
+					filtered[id] = todo;
+				}
+			} else {
+				filtered[id] = todo;
+			}
+		});
+		return filtered;
+	};
+});
+
+todomvc.filter('reverse', function() {
+      function toArray(list) {
+         var k, out = [];
+         if( list ) {
+            if( angular.isArray(list) ) {
+               out = list;
+            }
+            else if( typeof(list) === 'object' ) {
+               for (k in list) {
+                  if (list.hasOwnProperty(k)) { out.push(list[k]); }
+               }
+            }
+         }
+         return out;
+      }
+      return function(items) {
+         return toArray(items).slice().reverse();
+      };
+   });
+

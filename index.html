@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <base href="/" />
+  <title>CPSC 310 Term Project - Fork This!</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" type="text/css" href="css/select.css">
+  <link rel="stylesheet" type="text/css" href="css/buttons.css">
+  <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+  <!-- Custom Google Web Font -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-controller="AppCtrl">
+  <noscript>
+    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+      Your web browser must have JavaScript enabled
+      in order for this application to display correctly.
+    </div>
+  </noscript>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex-collapse">
+          <span class="icon-toggle"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">CPSC 310 - Fork This! <br>
+         <small class="lead team"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp - Team: Iterative Simplicity</small>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li ng-if="username"><a href="#profile"><button class="button button-border-primary button-pill">
+          <i class="fa fa-user"></i> {{username}}</button></a></li>
+          <li ng-if="!username"><a href="">
+          <button ng-click="login()" ng-disabled="username" class="button button-border-primary button-pill"
+          ><i class="fa fa-facebook-square"></i> Login</button>
+          </a></li>
+          <li><a ng-href="/chat/index.html?user={{username}}">
+          <button class="button button-border-royal button-pill"
+          ><i class="fa fa-twitter"></i> Discussion</button>
+          </a></li>
+          <li><a href="">
+          <button ng-click="logout()" ng-disabled="!username" class="button button-border-caution button-pill"
+          ><i class="fa fa-terminal"></i> Logout</button>
+          </a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <div class="intro-header">
+    <div class="container">
+    	<div class="intro-simple" style="position:absolute; left:50%;">
+          <div style="opacity:0.4;position:relative;background-color:#000000;width:500px;height:358px;left:-50%;top:-28px"></div>
+    	</div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="intro-message">
+          <br>
+            <img src="images/ForkThisWoodenBrighten.png" width="408" height="120">
+            <h3>CPSC 310 Term Project</h3>
+            {{hint()}}
+            <hr class="intro-divider">
+            <span class="button-wrap"><button ng-click="searchFocus()" class="button button-pill button-highlight animated rotateIn">Start Forking!</button></span>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.intro-header -->
+
+  <div class="content-section-b">
+  	<div style="background-color: #DDDDDD;"> </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-0 col-sm-0 col-md-2 col-lg-2"></div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="animated fadeInUp" id="resView" ng-view></div>
+
+        </div>
+        <div class="col-xs-0 col-sm-0 col-md-2 col-lg-2"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section-a">
+
+    <div class="container">
+
+      <div>
+        <div class="col-lg-5 col-sm-6">
+          <!-- Button for data traffic -->
+          <button onclick="handleClientLoad()" class="button button-pill button-primary animated rotateIn"><i class="fa fa-android"></i> Get Page Hits</button><br>
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading">Simplicity: </h2>
+          <p class="lead"><em>
+            If everyone is busy making everything, <br>
+            How can anyone perfect anything? <br>
+            We start to confuse convenience with joy, <br>
+            Abundance with choice.. <br>
+          </em>
+        </p>
+      </div>
+      <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+
+        <img src="images/ubc1.jpg" class="img-responsive img-thumbnail img-circle">
+
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.content-section-a -->
+
+<div class="content-section-b">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+        <hr class="section-heading-spacer">
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Iterative: </h2>
+        <p class="lead"><em>
+          Designing something requires focus <br>
+          The first thing we ask is <br>
+          What do we want people to feel? <br>
+          Delight, surprise, connection. <br>
+          Then we begin to craft around our intention <br>
+          It takes time,  <br>
+          There are a thousand no’s for every yes.</em> <br>
+        </p>
+      </div>
+      <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+        <img src="images/book1.png" class="img-responsive img-circle">
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+</div>
+<!-- /.content-section-b -->
+
+<div class="content-section-a">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-5 col-sm-6">
+
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Objective: </h2>
+        <p class="lead"><em>
+          We simplify, we perfect, we start over <br>
+          Until everything we touch <br>
+          Enhances each life it touches. <br></em>
+        </p>
+      </div>
+      <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+        <img src="images/ubclogo.png" class="img-responsive img-thumbnail">
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+</div>
+<!-- /.content-section-a -->
+
+<div class="banner">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Login to Browse ForkThis!</h2>
+      </div>
+      <div class="col-lg-6">
+        <ul class="list-inline banner-social-buttons">
+          <li ng-if="username"><a href=""><button class="button button-primary button-pill">
+          <i class="fa fa-user"></i> {{username}}</button></a></li>
+          <li ng-if="!username"><a href="">
+          <button ng-click="login()" ng-disabled="username" class="button button-pill button-primary"
+          ><i class="fa fa-facebook-square"></i> Login</button>
+          </a></li>
+          <li><a href="">
+          <button ng-click="logout()" ng-disabled="!username" class="button button-caution button-pill"
+          ><i class="fa fa-terminal"></i> Logout</button>
+          </a></li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+
+</div>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-route.min.js"></script>
+<script type="text/javascript" src="js/ngStorage.min.js"></script>
+<script type="text/javascript" src="js/angular-resource.min.js"></script>
+<script type="text/javascript" src="js/angular-animate.min.js"></script>
+<script type="text/javascript" src="js/angular-easyfb.min.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+<script type="text/javascript" src="js/buttons.js"></script>
+<script type="text/javascript" src="js/angular-sanitize.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+<script type="text/javascript" src="js/angularfire.min.js"></script>
+<script type="text/javascript" src="js/select.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/services.js"></script>
+<script type="text/javascript" src="app/controllers.js"></script>
+<script type="text/javascript" src="app/filters.js"></script>
+<script type="text/javascript" src="app/directives.js"></script>
+<script type="text/javascript" src="app/flow.js"></script>
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52655819-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</html>
+
+
+
+
+
+
+
